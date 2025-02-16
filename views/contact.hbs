@@ -1,0 +1,33 @@
+{{#> layout currentPage = "Contact"}}
+        <form class="contact-form" onsubmit="contactForm(event)">
+            <h1>GET IN TOUCH</h1>
+            <div class="form-field">
+                <label for="name">Name</label>
+                <input id="name" type="text" required>
+            </div>
+            <div class="form-field">
+                <label for="email">Email</label>
+                <input id="email" type="text" required>
+            </div>
+            <div class="form-field">
+                <label for="phoneNumber">Phone Number</label>
+                <input id="phoneNumber" type="text" required>
+            </div>
+            <div class="form-field">
+                <label for="subject">Subject</label>
+                <select id="subject" type="text" required>
+                    <option value="">Select subjects</option>
+                    <option value="invitation">Invitation</option>
+                    <option value="lets talk">Let's talk</option>
+                    <option value="URGENT!!!">URGENT</option>
+                </select>
+            </div>
+            <div class="form-field">
+                <label for="message">Your Message</label>
+                <textarea id="message"required></textarea>
+            </div>
+            <button type="submit">submit</button>
+        </form>
+        <script src="/js/contact-form.js">
+        </script>
+{{/layout}}

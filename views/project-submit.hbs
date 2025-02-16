@@ -1,0 +1,37 @@
+{{#>layout currentPage = 'Project'}}
+        <form class="project-form" onsubmit="projectForm(event)">
+            <h1>ADD MY PROJECT</h1>
+            <div class="form-field">
+                <label for="projectName">Project Name</label>
+                <input id="projectName" type="text">
+            </div>
+            <div class="duration-field">
+                <div class="start-field">
+                    <label for="start">Start Date</label>
+                    <input id="start" type="date" >
+                </div>
+                <div class="end-field">
+                    <label for="end">End Date</label>
+                    <input id="end" type="date" >
+                </div>
+            </div>
+            <div class="form-field">
+                <label for="description">Description</label>
+                <textarea id="description"></textarea>
+            </div>
+            <div class="dropdown">
+                <div class="dropdown-toggle">Technologies</div>
+                <div class="dropdown-content">
+                  <label><input type="checkbox" name="technologies" value="nodejs"> Node Js</label>
+                  <label><input type="checkbox" name="technologies" value="reactjs"> React Js</label>
+                  <label><input type="checkbox" name="technologies" value="nextjs"> Next Js</label>
+                  <label><input type="checkbox" name="technologies" value="typescript"> Typescript</label>
+                </div>
+            </div>
+            <div class="form-field">
+                <label for="image">Upload Image</label>
+                <input id="image" type="file" >
+            </div>
+            <button type="submit">submit</button>
+        </form>
+{{/layout}}

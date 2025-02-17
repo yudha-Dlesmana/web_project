@@ -2,6 +2,11 @@ const express = require ('express');
 const hbs = require('hbs');
 const path = require ('path');
 
+const 
+{
+  renderProject
+} = require('./controller/ProjectController')
+
 const app = express()
 const port = 3000
 
@@ -20,9 +25,7 @@ app.get('/', (req, res) => {
   res.render('index')
 }); // aman
 
-app.get('/project', (req,res) =>{
-  res.render('project-list')
-});
+app.get('/project', renderProject);
 
 app.get('/project-detail', (req, res) =>{
   res.render('project-detail')

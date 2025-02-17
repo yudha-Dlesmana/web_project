@@ -5,8 +5,28 @@
             <div>
                 <a href="/project-submit" class="links-contact-button">submit project</a>
             </div>
-            <section id="projectsList" class="projects-list">
-            </section>
+            <div class="projects-list">
+                {{#each projects}}
+                <article class="project-element">
+                    <img class="project-pic" src={{this.img}}>
+                    <h1>{{this.projectName}}</h1>
+                    <p class="duration">durasi: <br>
+                    {{this.startAt}} - {{this.endAt}}
+
+                    <p>{{this.desc}}</p>
+                    <div class="downloadOn">
+                        <img src="/img/icon/playstore.png">
+                        <img src="/img/icon/android.png">
+                        <img src="/img/icon/java.png">
+                    </div>
+                    <div class="project-item-buttons">
+                        <button class="edit-button">Edit</button>
+                        <button class="delete-button">Delete</button>
+                    </div>
+                </article>
+                {{/each}}
+            </div>
+            
         </div>
 
         <script src="/js/project-form.js">

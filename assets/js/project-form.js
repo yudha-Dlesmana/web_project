@@ -34,35 +34,7 @@ function projectForm(event){
     renderProject()
 }
 
-function renderProject(){
-    let projectElement = document.getElementById('projectsList');
-    projectElement.innerHTML = '';
 
-    for(let index = 0; index <projects.length; index++){
-        project = projects[index];
-
-        projectElement.innerHTML += `
-        <article class="project-element">
-            <img class="project-pic" src="${project.image}">
-            <h1>${project.projectName}</h1>
-            <p class="duration">durasi: ${durationDate(project.start, project.end)}<br>
-            ${convertDate(project.start)} - ${convertDate(project.end)}
-            </p
-
-            <p>${project.description}</p>
-            <div class="downloadOn">
-                <img src="asset/img/icon/playstore.png">
-                <img src="asset/img/icon/android.png">
-                <img src="asset/img/icon/java.png">
-            </div>
-            <div class="project-item-buttons">
-                <button class="edit-button">Edit</button>
-                <button class="delete-button">Delete</button>
-            </div>
-        </article>
-        `
-    }
-}
 
 // function durationDate(start, end){
 //     let dateStart = new Date(start);

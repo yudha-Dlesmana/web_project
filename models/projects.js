@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     startAt: DataTypes.DATEONLY,
     endAt: DataTypes.DATEONLY,
     desc: DataTypes.TEXT,
-    tech: DataTypes.ARRAY(DateTypes.STRING),
+    tech: DataTypes.ARRAY(DataTypes.STRING),
     img: DataTypes.STRING
   }, {
     sequelize,

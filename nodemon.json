@@ -1,4 +1,4 @@
 {
-    "watch": ["views", "server.js"],
+    "watch": ["views", "controller","server.js"],
     "ext": "js, hbs"
 }

@@ -1,0 +1,41 @@
+{{#>layout currentPage = 'Project'}}
+        <form class="project-form" action="/project-update/{{project.id}}?_method=PATCH" method="post">
+            <h1>ADD MY PROJECT</h1>
+            <div class="form-field">
+                <label for="projectName">Project Name</label>
+                <input id="projectName" type="text" name="projectName" value="{{project.projectName}}" required>
+            </div>
+            <div class="duration-field">
+                <div class="start-field">
+                    <label for="start">Start Date</label>
+                    <input id="start" type="date" name="startAt" value="{{project.startAt}}">
+                </div>
+                <div class="end-field">
+                    <label for="end">End Date</label>
+                    <input id="end" type="date" name="endAt" value="{{project.endAt}}">
+                </div>
+            </div>
+            <div class="form-field">
+                <label for="desc">Description</label>
+                <textarea id="desc" name="desc">{{project.desc}}</textarea>
+            </div>
+            <div class="dropdown">
+                <div class="dropdown-toggle">Technologies</div>
+                <div class="dropdown-content">
+                    <label><input type="checkbox" name="tech[]" value="nodejs"
+                    {{isChecked project.tech "nodejs"}}> Node Js</label>
+                    <label><input type="checkbox" name="tech[]" value="reactjs"
+                    {{isChecked project.tech "reactjs"}}> React Js</label>
+                    <label><input type="checkbox" name="tech[]" value="nextjs"
+                    {{isChecked project.tech "nextjs"}}> Next Js</label>
+                    <label><input type="checkbox" name="tech[]" value="typescript"
+                    {{isChecked project.tech "typescript"}}> Typescript</label>
+                </div>
+            </div>
+            {{!-- <div class="form-field">
+                <label for="image">Upload Image</label>
+                <input id="image" type="file" name="image">
+            </div> --}}
+            <button type="submit">update</button>
+        </form>
+{{/layout}}

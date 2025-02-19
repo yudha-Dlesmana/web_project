@@ -9,9 +9,12 @@
                 {{#each projects}}
                 <article class="project-element">
                     <img class="project-pic" src={{this.img}}>
-                    <h1>{{this.projectName}}</h1>
+                    <a href="/project/{{this.id}}" >
+                        <h1>{{this.projectName}}</h1>
+                    </a>
                     <p class="duration">durasi: <br>
                     {{this.startAt}} - {{this.endAt}}
+                    </p>
 
                     <p>{{this.desc}}</p>
                     <div class="downloadOn">
@@ -20,8 +23,12 @@
                         <img src="/img/icon/java.png">
                     </div>
                     <div class="project-item-buttons">
-                        <button class="edit-button">Edit</button>
-                        <button class="delete-button">Delete</button>
+                        <a href="/project-update/{{this.id}}"><button class="edit-button">update</button>
+                        </a>
+                        <form action="/project/{{this.id}}?_method=DELETE" method="post">
+                            <button onclick="return confirm('Are you sure you want to delete?')" class="delete-button">Delete</button>
+                        </form>
+                        
                     </div>
                 </article>
                 {{/each}}

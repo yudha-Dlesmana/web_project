@@ -7,6 +7,10 @@ body {
     background-color: #faf2f2;
     margin: 0px;
 }
+a {
+    text-decoration: none;
+    color: black;
+}
 
 /* Navigation bar */
 nav {

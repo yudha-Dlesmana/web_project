@@ -1,5 +1,6 @@
 const express = require ('express');
 const hbs = require('hbs');
+const multer = require('multer');
 const methodOverride = require('method-override')
 const path = require ('path');
 
@@ -17,6 +18,7 @@ const
   projectUpdate,
   deleteProject,
 } = require('./controller/ProjectController');
+const upload = require('./middlewares/upload-file')
 
 const app = express();
 app.set( 'view engine', 'hbs' );
@@ -48,7 +50,7 @@ app.get('/project', renderProjects); //aman
 
 // projectSubmit
 app.get('/project-submit', renderProjectSubmit) //aman
-app.post('/project-submit', projectSubmit) //aman
+app.post('/project-submit', upload.single('image'), projectSubmit) //
 
 // projectDetail
 app.get('/project/:id', renderProjectDetail) //aman

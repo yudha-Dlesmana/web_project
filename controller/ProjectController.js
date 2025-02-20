@@ -45,16 +45,18 @@ async function projectSubmit(req, res)
     } = req.body;
     const startDate = startAt ? new Date(startAt) : null;
     const endDate = endAt ? new Date(endAt) : null;
+    const image = req.file.path;
+    console.log('file ada di' + image)
 
     // simpan data di db
-    const submitProject = await Projects.create(
-        {
-            projectName,
-            startAt : startDate,
-            endAt: endDate,
-            desc,    
-            tech
-        });
+    // const submitProject = await Projects.create(
+    //     {
+    //         projectName,
+    //         startAt : startDate,
+    //         endAt: endDate,
+    //         desc,    
+    //         tech
+    //     });
     res.redirect('/project')
 }
 

@@ -1,7 +1,8 @@
 const express = require ('express');
 const hbs = require('hbs');
-const multer = require('multer');
 const methodOverride = require('method-override')
+const flash = require('express-flash');
+const session = require('express-session')
 const path = require ('path');
 
 const port = 3000;
@@ -11,21 +12,46 @@ const
   renderIndex,
   renderContact,
   renderProjects,
+  renderMyProjects,
   renderProjectSubmit,
   projectSubmit,
   renderProjectDetail,
   renderProjectUpdate,
   projectUpdate,
   deleteProject,
+  renderRegister,
+  authRegister,
+  renderLogin,
+  authLogin,
+  authLogout,
+  renderError
 } = require('./controller/ProjectController');
 const upload = require('./middlewares/upload-file')
+const 
+{ 
+  logged,
+  loggedStatus
+} = require('./middlewares/auth');
+const {formatDateToWIB, rangeDuration, duration} = require('./utils/time')
+
 
 const app = express();
 app.set( 'view engine', 'hbs' );
-app.use( express.static('assets'));
+app.use( "/assets", express.static(path.join(__dirname, './assets')));
+app.use( "/uploads", express.static(path.join(__dirname, './uploads')));
 app.use( express.json() );
-app.use( express.urlencoded({ extended: true }))
-app.use( methodOverride( "_method" ));
+app.use( express.urlencoded({ extended: true }) );
+app.use( methodOverride( "_method" ) );
+app.use( 
+  session({
+    name: 'sid_MPCsx5Vr',
+    secret: 'LpONRHMZZ4qU9MtB8bCFpMySec',
+    resave: false,
+    saveUninitialized: false,
+  })
+)
+app.use( flash() );
+app.use( loggedStatus );
 
 
 
@@ -39,31 +65,50 @@ hbs.registerHelper('isChecked', (arr, n) =>
   { 
     return arr && arr.includes(n) ? 'checked' : '';
   })
-
+hbs.registerHelper('formatDateToWIB', formatDateToWIB);
+hbs.registerHelper('rangeDuration', rangeDuration);
+hbs.registerHelper('duration', duration);
 // index
-app.get('/', renderIndex); // aman
+app.get( '/', renderIndex ); // aman
+
 // contact
-app.get('/contact', renderContact)// aman
+app.get( '/contact', renderContact ); // aman
+
+// register
+app.get( '/register', renderRegister ); // aman
+app.post( '/register', authRegister ); // 
+
+//  login 
+app.get( '/login', renderLogin ); // aman
+app.post( '/login', authLogin); // aman
+
+// logout
+app.get( '/logout', authLogout); // aman
 
 // projectList
-app.get('/project', renderProjects); //aman
+app.get( '/project', renderProjects ); // aman
+
+//harus melalui login 
+app.get( '/my-project', logged, renderMyProjects) // aman
 
 // projectSubmit
-app.get('/project-submit', renderProjectSubmit) //aman
-app.post('/project-submit', upload.single('image'), projectSubmit) //
+app.get( '/project-submit', logged, renderProjectSubmit ); //aman
+app.post( '/project-submit', logged, upload.single('image'), projectSubmit ); //aman
 
 // projectDetail
-app.get('/project/:id', renderProjectDetail) //aman
+app.get( '/project/:id', renderProjectDetail ); // aman
 
 // projectUpdate
-app.get('/project-update/:id', renderProjectUpdate) //aman
-app.patch('/project-update/:id', projectUpdate)
+app.get('/project-update/:id', renderProjectUpdate); // aman
+app.patch('/project-update/:id',  projectUpdate); // edit
 
 // projectDelete
-app.delete('/project/:id', deleteProject) //aman
+app.delete('/project/:id', logged,  deleteProject); // aman
+
+app.get("/notFound", renderError);
 
   
 app.listen(port, () => {
-  console.log(`Task app listening on port ${port}`)
+  console.log(`Task app listening on port ${port}`);
 })
   

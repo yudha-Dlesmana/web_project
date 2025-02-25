@@ -1,41 +1,56 @@
 {{#>layout currentPage = 'Project'}}
-        <form class="project-form" action="/project-update/{{project.id}}?_method=PATCH" method="post">
-            <h1>ADD MY PROJECT</h1>
-            <div class="form-field">
-                <label for="projectName">Project Name</label>
-                <input id="projectName" type="text" name="projectName" value="{{project.projectName}}" required>
+        <form class="form-field" action="/project-update/{{project.id}}?_method=PATCH" enctype="multipart/form-data" method="post">
+            <h1>UPDATE MY PROJECT</h1>
+            <div class="mb-3">
+                <input class="form-control" type="text"  name="projectName" placeholder="Project Name" value="{{project.projectName}}" required>
             </div>
-            <div class="duration-field">
-                <div class="start-field">
-                    <label for="start">Start Date</label>
-                    <input id="start" type="date" name="startAt" value="{{project.startAt}}">
+            <div class="mb-3 row">
+                <div class="col">
+                    <input class="form-control" type="date" name="startAt" placeholder="Start Date" value="{{project.startAt}}" required >
                 </div>
-                <div class="end-field">
-                    <label for="end">End Date</label>
-                    <input id="end" type="date" name="endAt" value="{{project.endAt}}">
+                <div class="col">
+                    <input class="form-control" type="date" name="endAt" placeholder="End Date" value="{{project.endAt}}">
                 </div>
             </div>
-            <div class="form-field">
-                <label for="desc">Description</label>
-                <textarea id="desc" name="desc">{{project.desc}}</textarea>
+            <div class="mb-3">
+                <textarea class="form-control" name="desc" placeholder="Description">{{project.desc}}</textarea>
             </div>
-            <div class="dropdown">
-                <div class="dropdown-toggle">Technologies</div>
-                <div class="dropdown-content">
-                    <label><input type="checkbox" name="tech[]" value="nodejs"
-                    {{isChecked project.tech "nodejs"}}> Node Js</label>
-                    <label><input type="checkbox" name="tech[]" value="reactjs"
-                    {{isChecked project.tech "reactjs"}}> React Js</label>
-                    <label><input type="checkbox" name="tech[]" value="nextjs"
-                    {{isChecked project.tech "nextjs"}}> Next Js</label>
-                    <label><input type="checkbox" name="tech[]" value="typescript"
-                    {{isChecked project.tech "typescript"}}> Typescript</label>
+            <div class="mb-3">
+                <div class="fw-bold mb-2">Technologies</div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="tech[]" value="nodejs" {{isChecked project.tech "nodejs"}} id="tech-nodejs">
+                            <label class="form-check-label" for="tech-nodejs">Node Js</label>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="tech[]" value="reactjs" {{isChecked project.tech "reactjs"}} id="tech-reactjs">
+                            <label class="form-check-label" for="tech-reactjs">React Js</label>
+                        </div>
+                    </div>
+                    <div class="col-6 mt-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="tech[]" value="nextjs" {{isChecked project.tech "nextjs"}} id="tech-nextjs">
+                            <label class="form-check-label" for="tech-nextjs">Next Js</label>
+                        </div>
+                    </div>
+                    <div class="col-6 mt-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="tech[]" value="typescript" {{isChecked project.tech "typescript"}} id="tech-typescript">
+                            <label class="form-check-label" for="tech-typescript">Typescript</label>
+                        </div>
+                    </div>
+                </div>
                 </div>
             </div>
-            {{!-- <div class="form-field">
-                <label for="image">Upload Image</label>
-                <input id="image" type="file" name="image">
+            {{!-- <div class="mb-3">
+                <label for="formFile" class="form-label">Upload Image</label>
+                <input class="form-control" type="file" name="img" id="formFile">
             </div> --}}
-            <button type="submit">update</button>
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary custom-btn">Update</button>
+            </div>
         </form>
 {{/layout}}

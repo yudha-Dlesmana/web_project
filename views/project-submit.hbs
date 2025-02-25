@@ -1,37 +1,56 @@
 {{#>layout currentPage = 'Project'}}
-        <form class="project-form" action="/project-submit" enctype="multipart/form-data" method="post">
+        <form class="form-field" action="/project-submit" enctype="multipart/form-data" method="post">
             <h1>ADD MY PROJECT</h1>
-            <div class="form-field">
-                <label for="projectName">Project Name</label>
-                <input id="projectName" type="text" name="projectName" required>
+            <div class="mb-3">
+                <input class="form-control" type="text"  name="projectName" placeholder="Project Name" required>
             </div>
-            <div class="duration-field">
-                <div class="start-field">
-                    <label for="start">Start Date</label>
-                    <input id="start" type="date" name="startAt" >
+            <div class="mb-3 row">
+                <div class="col">
+                    <input class="form-control" type="date" name="startAt" placeholder="Start Date" required>
                 </div>
-                <div class="end-field">
-                    <label for="end">End Date</label>
-                    <input id="end" type="date" name="endAt">
+                <div class="col">
+                    <input class="form-control" type="date" name="endAt" placeholder="End Date" >
                 </div>
             </div>
-            <div class="form-field">
-                <label for="desc">Description</label>
-                <textarea id="desc" name="desc"></textarea>
+            <div class="mb-3">
+                <textarea class="form-control" name="desc" placeholder="Description"></textarea>
             </div>
-            <div class="dropdown">
-                <div class="dropdown-toggle">Technologies</div>
-                <div class="dropdown-content">
-                  <label><input type="checkbox" name="tech[]" value="nodejs"> Node Js</label>
-                  <label><input type="checkbox" name="tech[]" value="reactjs"> React Js</label>
-                  <label><input type="checkbox" name="tech[]" value="nextjs"> Next Js</label>
-                  <label><input type="checkbox" name="tech[]" value="typescript"> Typescript</label>
+            <div class="mb-3">
+                <div class="fw-bold mb-2">Technologies</div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="tech[]" value="nodejs" id="tech-nodejs">
+                            <label class="form-check-label" for="tech-nodejs">Node Js</label>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="tech[]" value="reactjs" id="tech-reactjs">
+                            <label class="form-check-label" for="tech-reactjs">React Js</label>
+                        </div>
+                    </div>
+                    <div class="col-6 mt-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="tech[]" value="nextjs" id="tech-nextjs">
+                            <label class="form-check-label" for="tech-nextjs">Next Js</label>
+                        </div>
+                    </div>
+                    <div class="col-6 mt-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="tech[]" value="typescript" id="tech-typescript">
+                            <label class="form-check-label" for="tech-typescript">Typescript</label>
+                        </div>
+                    </div>
+                </div>
                 </div>
             </div>
-            <div class="form-field">
-                <label for="image">Upload Image</label>
-                <input id="image" type="file" name="image">
+            <div class="mb-3">
+                <label for="formFile" class="form-label">Upload Image</label>
+                <input class="form-control" type="file" name="image" id="formFile" required>
             </div>
-            <button type="submit">submit</button>
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary custom-btn">Submit</button>
+            </div>
         </form>
 {{/layout}}

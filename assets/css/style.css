@@ -1,51 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
-
-html {
-    font-family: "Poppins", sans-serif;
-}
-body {
-    background-color: #faf2f2;
-    margin: 0px;
-}
-a {
-    text-decoration: none;
-    color: black;
-}
 
 /* Navigation bar */
-nav {
-    background-color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px 50px;
+.icon{
+    width: 150px;
 }
-.active-bar{
-    font-weight: bold;
+
+/* Form field */
+.form-field {
+    width: 35%;
+    margin: 40px auto ; 
+    gap: 10px;
 }
-.navbar-links {
-    display: flex;
-    align-items: center;
-    gap: 50px;
-    list-style: none;
-    padding: 0;
-    margin: 10px 0;
-}
-.navbar-links a {
-    text-decoration: none;
-    color: black;
-}
-.icon {
-    height: 40px;
-}
-.links-contact-button {
-    text-decoration: none;
-    color: white;
-    background-color: black;
-    padding: 7px 20px;
-    border-radius: 10px;
-    font-weight: 500;
-}
+
+
+
+
 
 /* Profile card */
 .profile-card {
@@ -148,13 +116,7 @@ nav {
 }
 
 /* ceklis techlogies */
-.project-form{
-    display: flex;
-    flex-direction: column;
-    width: 40%;
-    margin: 40px auto ;
-    gap: 10px;
-}
+
 .project-form h1{
     text-align: center;
 }
@@ -226,11 +188,6 @@ nav {
 }
 .project-element h1{
     margin-bottom: 0px;
-}
-.duration{
-    margin-bottom: 10px;
-    font-size: 12px;
-    color: gray;
 }
 .project-pic{
     display: block;

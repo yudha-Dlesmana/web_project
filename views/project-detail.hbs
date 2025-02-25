@@ -1,9 +1,10 @@
 {{#>layout currentPage = 'Project'}}
-    <article class="project-detial">
-        <img src="{{project.img}}">
-        <h1>{{project.projectName}}</h1>
-        <p1>{{project.desc}}<br>
-        {{project.createdAt}}</p1>
+    <article class="container py-4">
+        <div class="text-center mb-4">
+            <img src="{{project.img}}" alt="ilustrasi" class="img-fluid rounded" style="max-height: 400px; object-fit: cover;">
+        </div>
+        <h1 class="text-center mb-3">{{project.projectName}}</h1>
+        <p class="text-muted text-center mb-4">{{formatDateToWIB project.updatedAt}}</p>
+        <p class="lead text-justify">{{project.desc}}</p>
     </article>
-
 {{/layout}} 

@@ -1,0 +1,29 @@
+{{#>layout currentPage = 'Register'}}
+        <form class="form-field" action="/register" method="post">
+            <h1 style="text-align: center;">
+                REGISTER
+            </h1>
+            {{#if messages.failed}}
+            <div class="alert alert-danger" role="alert">
+                {{failed}}
+            </div>
+            {{/if}}
+
+            <div class="mb-3">
+                <input class="form-control" id="username" type="text" name="username" placeholder="Username" required>
+            </div>
+            <div class="mb-3">
+                <input class="form-control" id="email" type="text" name="email" placeholder="Email" required>
+            </div>
+            <div class="mb-3">
+                <input class="form-control" id="password" type="password" name="password" placeholder="Password" required>
+            </div>
+            <div class="mb-3">
+                <input class="form-control" id="confirmPassword" type="password" name="confirmPassword" placeholder="Confirm Password" required>
+            </div>
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary custom-btn">Register</button>
+            </div>
+            <p>Already have an account? Log in <a href="login">here</a></p>
+        </form>
+{{/layout}}

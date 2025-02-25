@@ -1,33 +1,48 @@
-{{#> layout currentPage = "Contact"}}
-        <form class="contact-form" onsubmit="contactForm(event)">
-            <h1>GET IN TOUCH</h1>
-            <div class="form-field">
-                <label for="name">Name</label>
-                <input id="name" type="text" required>
+{{#>layout currentPage = "Contact"}}
+        <form class="form-field" onsubmit="contactForm(event)">
+            <h1 style="text-align: center;">
+                GET IN TOUCH
+            </h1>
+            <div class="mb-3">
+                <input class="form-control" id="name" type="text" placeholder="Name" required>
             </div>
-            <div class="form-field">
-                <label for="email">Email</label>
-                <input id="email" type="text" required>
+            <div class="mb-3">
+                <input class="form-control" id="email" type="email" placeholder="Email" required>
             </div>
-            <div class="form-field">
-                <label for="phoneNumber">Phone Number</label>
-                <input id="phoneNumber" type="text" required>
+            <div class="mb-3">
+                <input class="form-control" id="phoneNumber" type="tel" placeholder="Phone Number" required>
             </div>
-            <div class="form-field">
-                <label for="subject">Subject</label>
-                <select id="subject" type="text" required>
-                    <option value="">Select subjects</option>
-                    <option value="invitation">Invitation</option>
-                    <option value="lets talk">Let's talk</option>
-                    <option value="URGENT!!!">URGENT</option>
+            <div class="mb-3">
+                <select class="form-select" id="subject" aria-label="Default select example">
+                    <option selected>URGENT!!!</option>
+                    <option value="Invitation">Invitation</option>
+                    <option value="Let's talk">Let's talk</option>
                 </select>
             </div>
-            <div class="form-field">
-                <label for="message">Your Message</label>
-                <textarea id="message"required></textarea>
+            <div class="mb-3">
+                <textarea class="form-control" id="message" placeholder="Your Message"></textarea>
             </div>
-            <button type="submit">submit</button>
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary custom-btn w-25">Submit</button>
+            </div>
+            
         </form>
-        <script src="/js/contact-form.js">
+
+        <script >
+            function contactForm(event){
+            event.preventDefault();
+            const sendTo = "yudha.dlesmana@gmail.com";
+
+            const name          = document.getElementById("name").value;
+            const email         =  document.getElementById("email").value;
+            const phoneNumber   =  document.getElementById("phoneNumber").value;
+            const subject       =  encodeURIComponent(document.getElementById("subject").value);
+            const message       =  encodeURIComponent(document.getElementById("message").value);
+
+            alert(`Name: ${name}\nEmail: ${email}\nPhone Number: ${phoneNumber}\nSubject: ${decodeURIComponent(subject)}\nMessage: ${decodeURIComponent(message)}`);
+            const mailTo = document.createElement('a');
+            mailTo.href = `mailto:${sendTo}?subject=${subject}&body=Hello, my name is ${name}.%0A%0ASubject: ${decodeURIComponent(subject)}%0A%0A${decodeURIComponent(message)}%0A%0AContact me at: ${email}, Phone: ${phoneNumber}`;
+            mailTo.click();
+            }
         </script>
 {{/layout}}

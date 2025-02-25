@@ -1,22 +1,49 @@
-    
-    <nav>
-        <ul class="navbar-links">
-            <img class="icon" src="/img/icon/DW-oren.png" alt="Logo">
-            <li>
-                <a 
-                {{#if (equal currentPage 'Home')}}
-                style="font-weight: bold;"
-                {{/if}}
-                href="/" >Home</a>
-            </li>
-            <li>
-                <a 
-                {{#if (equal currentPage 'Project')}}
-                style="font-weight: bold;"
-                {{/if}}
-                href="/project">My Project</a>
-            </li>
-        </ul>
-        
-        <a class="links-contact-button" href="contact">Contact Me</a>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/"><img class="icon" src="/assets/img/spy-family-seeklogo.png" alt="Logo"></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link {{#if (equal currentPage 'Home')}} active {{/if}}" aria-current="page"
+                 href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {{#if (equal currentPage 'Project')}} active {{/if}}"  aria-current="page"
+                href="/project">Projects</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {{#if (equal currentPage 'Contact')}} active {{/if}}" aria-current="page"
+                  href="/contact">Contact Me</a>
+              </li>
+              {{#if logged}}  
+              <li class="nav-item">
+                  <a class="nav-link {{#if (equal currentPage 'My Project')}} active {{/if}}" aria-current="page" href="/my-project">My Project</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/feedback">feedbacks</a>
+              </li>
+              {{/if}}
+
+            </ul>
+            <ul class="navbar-nav ms-auto">
+            {{#if logged}}
+              <li class="nav-item">
+                <a class="nav-link" href="/logout">Logout</a>
+              </li>
+            {{else}}
+              <li class="nav-item">
+                <a class="nav-link {{#if (equal currentPage 'Login')}} active {{/if}}" aria-current="page" 
+                href="/login">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {{#if (equal currentPage 'Register')}} active {{/if}}" aria-current="page" 
+                href="/register">Register</a>
+              </li>
+            {{/if}}
+            </ul>
+          </div>
+        </div>
     </nav>

@@ -1,0 +1,102 @@
+{{#>layout currentPage = 'Testimonials'}}
+    <main>
+        <h1 style="text-align: center">Testimonials</h1>
+        <h3 style="text-align: center">Rating By Star</h3>
+
+        <div class="d-flex justify-content-center my-3">
+            <div class="btn-group" role="group" aria-label="Filter Testimonials">
+                <button type="button" class="btn btn-primary" onclick="showAllTestimonials()">All</button>
+                <button type="button" class="btn btn-outline-primary" onclick="filterTestimonialsByStar(1)">1★</button>
+                <button type="button" class="btn btn-outline-primary" onclick="filterTestimonialsByStar(2)">2★</button>
+                <button type="button" class="btn btn-outline-primary" onclick="filterTestimonialsByStar(3)">3★</button>
+                <button type="button" class="btn btn-outline-primary" onclick="filterTestimonialsByStar(4)">4★</button>
+                <button type="button" class="btn btn-outline-primary" onclick="filterTestimonialsByStar(5)">5★</button>
+            </div>
+        </div>
+
+        <div class="container my-4">
+          <div id="testimonialsContainer" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+            <!-- Testimoni akan dirender di sini -->
+            <p>Loading ...</p>
+          </div>
+        </div>
+    </main>
+
+    <script>
+        function fetchTestimonials() {
+          return new Promise((resolve, reject) => {
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", "https://api.npoint.io/37b03059009dda95802a", true);
+
+            xhr.onload = function () {
+              if (xhr.status === 200) {
+                const response = JSON.parse(xhr.responseText);
+                resolve(response.testimonials);
+              } else {
+                reject(`Error: ${xhr.status}`); 
+              }
+            };
+
+            xhr.onerror = () => reject("Network error");
+            xhr.send();
+          });
+        }
+
+        const testimonialsContainer = document.getElementById("testimonialsContainer");
+
+        const testimonialsHTML = (array) => {
+          return array
+            .map(
+              (testimonial) => `
+                <div class="col">
+                  <div class="card h-100 shadow-sm">
+                    <img src="${testimonial.image}" class="card-img-top" alt="testimonial-image" />
+                    <div class="card-body d-flex flex-column justify-content-between">
+                      <p class="card-text fst-italic">"${testimonial.caption}"</p>
+                      <div class="mt-auto text-end">
+                        <p class="mb-1">- ${testimonial.author}</p>
+                        <p class="fw-bold">${testimonial.rating}★</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              `
+            )
+            .join("");
+        };
+
+        async function showAllTestimonials() {
+          try {
+            const testimonials = await fetchTestimonials();
+            testimonialsContainer.innerHTML = testimonialsHTML(testimonials);
+          } catch (error) {
+            console.error(error);
+            testimonialsContainer.innerHTML = `<p>Gagal memuat testimoni.</p>`;
+          }
+        }
+
+        async function filterTestimonialsByStar(rating) {
+          try {
+            const testimonials = await fetchTestimonials();
+            const filteredTestimonials = testimonials.filter(
+              (testimonial) => testimonial.rating === rating
+            );
+
+            testimonialsContainer.innerHTML =
+              filteredTestimonials.length > 0
+                ? testimonialsHTML(filteredTestimonials)
+                : `<p>No testimonials.</p>`;
+          } catch (error) {
+            console.error(error);
+            testimonialsContainer.innerHTML = `<p>Gagal memuat testimoni.</p>`;
+          }
+        }
+
+        showAllTestimonials();
+    </script>
+
+    
+    
+
+
+{{/layout}}

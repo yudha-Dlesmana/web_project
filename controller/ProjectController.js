@@ -15,7 +15,14 @@ function renderIndex (req, res)
 } // Render Home page
 
 function renderContact(req, res){
-    res.render('contact')
+    const user = req.session.user;
+    if(!user){
+        return res.render('contact')
+    }
+    const userEmail = user.email
+    console.log(userEmail)
+    res.render('contact', {email:userEmail})
+    
 } // Render Contact page
 
 // GET project
@@ -99,7 +106,7 @@ async function projectSubmit(req, res)
             img,
             userId : user.id
         });
-    res.redirect('/project')
+    res.redirect('/my-project')
 } // POST Project
 
 // PATCH Project
@@ -123,32 +130,33 @@ async function projectUpdate(req, res)
     const id = req.params.id;
     const user = req.session.user
     const userId = user.id
+    
     const 
     { 
         projectName, 
         startAt,
         endAt, 
         desc,
-        tech
+        tech,
     } = req.body;
+
     const startDate = startAt ? new Date(startAt) : null;
     const endDate = endAt ? new Date(endAt) : null;
-
     const old = await Project.findOne({
         where: {id, userId},
     });
-    console.log(old);
+    // console.log(old.dataValues);
     await old.update(
         { 
             projectName, 
             startAt: startDate, 
             endAt: endDate, 
             desc, 
-            tech
+            tech,
+            img: req.file ? "/" + req.file.path: old.img,
         }
     )
-    console.log(old)
-
+    // console.log(old.dataValues);
     res.redirect('/my-project')
 } // PATCH Project
 
@@ -166,8 +174,13 @@ async function deleteProject (req, res)
     if (deleted === 0) {
         return res.status(404).send("Project not found or you don't have permission to delete it.");
     }
-    res.redirect('/project')
+    res.redirect('/my-project')
 } // DELETE Project
+
+function renderTestimonials(req, res)
+{
+    res.render('testimonials')
+}
 
 // auth-register
 function renderRegister (req, res)
@@ -278,6 +291,7 @@ module.exports =
     renderProjectUpdate, 
     projectUpdate,
     deleteProject,
+    renderTestimonials,
     renderRegister,
     authRegister,
     renderLogin,

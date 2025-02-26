@@ -17,8 +17,8 @@
                             <h5 class="card-title">{{this.projectName}}</h5>
                             </a>
                             
-                            <p style="font-size: 12px; color: gray">durasi: <br>
-                            {{this.startAt}} - {{this.endAt}}<br>
+                            <p style="font-size: 12px; color: gray">durasi: {{duration this.startAt this.endAt}}<br>
+                            {{rangeDuration this.startAt this.endAt}}<br>
                             by: {{this.user.username}}
                             </p>
                             <p class="text-truncate" style="max-width:250px">{{this.desc}}</p>
@@ -35,8 +35,8 @@
                                         <a href="/project-update/{{this.id}}" class="btn btn-warning w-100">Update</a>
                                     </div>
                                     <div class="col">
-                                        <form action="/project/{{this.id}}?_method=DELETE" method="post">
-                                            <button onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger w-100">Delete</button>
+                                        <form id="deleteProject" action="/project/{{this.id}}?_method=DELETE" method="post">
+                                            <button onclick="deleteConfirm(event)" class="btn btn-danger w-100">Delete</button>
                                         </form>
                                     </div>
                                 </div>
@@ -48,6 +48,5 @@
             </div>
         </div>
 
-        <script src="/js/project-form.js">
-        </script>
+        <script src="/assets/js/SweetAlert.js"></script>
 {{/layout}}

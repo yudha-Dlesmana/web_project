@@ -7,8 +7,9 @@
                 <input class="form-control" id="name" type="text" placeholder="Name" required>
             </div>
             <div class="mb-3">
-                <input class="form-control" id="email" type="email" placeholder="Email" required>
+                <input class="form-control" id="email" type="email" placeholder="Email" {{#if logged}} value="{{email}}"{{/if}}>
             </div>
+
             <div class="mb-3">
                 <input class="form-control" id="phoneNumber" type="tel" placeholder="Phone Number" required>
             </div>

@@ -4,6 +4,7 @@ const methodOverride = require('method-override')
 const flash = require('express-flash');
 const session = require('express-session')
 const path = require ('path');
+require("dotenv").config();
 
 const port = 3000;
 
@@ -19,6 +20,7 @@ const
   renderProjectUpdate,
   projectUpdate,
   deleteProject,
+  renderTestimonials,
   renderRegister,
   authRegister,
   renderLogin,
@@ -99,11 +101,15 @@ app.post( '/project-submit', logged, upload.single('image'), projectSubmit ); //
 app.get( '/project/:id', renderProjectDetail ); // aman
 
 // projectUpdate
-app.get('/project-update/:id', renderProjectUpdate); // aman
-app.patch('/project-update/:id',  projectUpdate); // edit
+app.get('/project-update/:id', logged, renderProjectUpdate); // edit gambar 
+app.patch('/project-update/:id', logged, upload.single('image'),  projectUpdate); // edit gambar
 
 // projectDelete
-app.delete('/project/:id', logged,  deleteProject); // aman
+app.delete('/project/:id', logged,  deleteProject); // edit add sweet alert
+
+// testimonies
+app.get('/testimonials', renderTestimonials);
+
 
 app.get("/notFound", renderError);
 

@@ -39,6 +39,7 @@ const {formatDateToWIB, rangeDuration, duration} = require('./utils/time')
 
 const app = express();
 app.set( 'view engine', 'hbs' );
+app.set(  "/views", path.join(__dirname, "./views"));
 app.use( "/assets", express.static(path.join(__dirname, './assets')));
 app.use( "/uploads", express.static(path.join(__dirname, './uploads')));
 app.use( express.json() );
